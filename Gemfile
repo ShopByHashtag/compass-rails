@@ -16,3 +16,4 @@ unless ENV["CI"]
   gem 'guard-test'
 end
 
+gem 'airbrake'
