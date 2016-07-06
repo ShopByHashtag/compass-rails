@@ -45,8 +45,8 @@ klass.class_eval do
 					context.depend_on(filename)
 				end
 			rescue => e
-				puts 'The following file blew up: ' + filename.to_s
-				Airbrake.notify(e)
+				puts 'The following file blew up: ' + filename.to_s + ' - dependency: ' + dependency.to_json + ' - context: ' + context.to_json
+				#Airbrake.notify(e)
 			end
 		end
 
