@@ -1,3 +1,4 @@
+require 'rails'
 require 'compass'
 require "compass-rails/version"
 require "compass-rails/configuration"
