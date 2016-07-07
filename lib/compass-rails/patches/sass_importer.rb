@@ -37,15 +37,19 @@ klass.class_eval do
 			begin
 				filename = dependency.options[:filename]
 				if filename.include?('*') # Handle sprite globs
-					image_path = Rails.root.join(Compass.configuration.images_dir).to_s
-					Dir[File.join(image_path, filename)].each do |f|
-						context.depend_on(f)
+					begin
+						image_path = Rails.root.join(Compass.configuration.images_dir).to_s
+						Dir[File.join(image_path, filename)].each do |f|
+							context.depend_on(f)
+						end
+					rescue
+						puts 'The following sprite file blew up: ' + filename.to_s + ' - dependency: ' + dependency.to_json + ' - context: ' + context.to_json
 					end
 				else
 					begin
-					context.depend_on(filename)
-					rescue => e
-						puts 'The following file blew up: ' + filename.to_s + ' - dependency: ' + dependency.to_json + ' - context: ' + context.to_json
+						context.depend_on(filename)
+					rescue
+						puts 'The following non-sprite file blew up: ' + filename.to_s + ' - dependency: ' + dependency.to_json + ' - context: ' + context.to_json
 					end
 				end
 			rescue => e
