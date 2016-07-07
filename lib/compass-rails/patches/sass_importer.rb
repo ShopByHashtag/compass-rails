@@ -33,22 +33,22 @@ klass.class_eval do
 
 		engine = ::Sass::Engine.new(data, options)
 
-		engine.dependencies.map do |dependency|
-			begin
-				filename = dependency.options[:filename]
-				if filename.include?('*') # Handle sprite globs
-					image_path = Rails.root.join(Compass.configuration.images_dir).to_s
-					Dir[File.join(image_path, filename)].each do |f|
-						context.depend_on(f)
-					end
-				else
-					context.depend_on(filename)
-				end
-			rescue => e
-				puts 'The following file blew up: ' + filename.to_s + ' - dependency: ' + dependency.to_json + ' - context: ' + context.to_json
-				#Airbrake.notify(e)
-			end
-		end
+		# engine.dependencies.map do |dependency|
+		# 	begin
+		# 		filename = dependency.options[:filename]
+		# 		if filename.include?('*') # Handle sprite globs
+		# 			image_path = Rails.root.join(Compass.configuration.images_dir).to_s
+		# 			Dir[File.join(image_path, filename)].each do |f|
+		# 				context.depend_on(f)
+		# 			end
+		# 		else
+		# 			context.depend_on(filename)
+		# 		end
+		# 	rescue => e
+		# 		puts 'The following file blew up: ' + filename.to_s + ' - dependency: ' + dependency.to_json + ' - context: ' + context.to_json
+		# 		#Airbrake.notify(e)
+		# 	end
+		# end
 
 		engine.render
 	rescue ::Sass::SyntaxError => e
