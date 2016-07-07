@@ -1,7 +1,7 @@
 require 'rails'
 require 'compass'
-require "compass-rails/version"
-require "compass-rails/configuration"
+require 'compass-rails/version'
+require 'compass-rails/configuration'
 
 module CompassRails
 
@@ -19,7 +19,7 @@ module CompassRails
         sprockets_trail = sprockets_env.index
       end
 
-      keys = ['app/assets', 'lib/assets', 'vendor/assets']
+      keys = %w(app/assets lib/assets vendor/assets)
       local = keys.map {|path| ::Rails.root.join(path) }.map { |path| [File.join(path, 'images'), File.join(path, 'stylesheets')] }.flatten!
       sprockets_trail.paths.unshift(*local)
       paths = []
