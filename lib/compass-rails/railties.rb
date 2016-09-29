@@ -4,7 +4,7 @@ if defined?(::Rails)
 	elsif CompassRails.rails4?
 		require "compass-rails/railties/4_0"
 	elsif CompassRails.rails5?
-		
+		require "compass-rails/railties/4_0"
 	else
 		$stderr.puts "Unsupported rails environment for compass"
 	end
