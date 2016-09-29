@@ -4,7 +4,7 @@ require "compass-rails/configuration"
 
 module CompassRails
 
-	RAILS_5  = %r{^5.[0|1|2]}
+	RAILS_5  = %r{^5.[0|0.0.1|1|2]}
 	RAILS_4  = %r{^4.[0|1|2]}
 	RAILS_32 = %r{^3.2}
 	RAILS_31 = %r{^3.1}
